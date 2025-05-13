@@ -1,8 +1,8 @@
-
 import ProfileCard from "../components/ProfileCard";
 import ExperienceSection from "../components/ExperienceSection";
 import SkillsSection from "../components/SkillsSection";
 import EducationSection from "../components/EducationSection";
+import PersonalProjectsSection from "../components/PersonalProjectsSection";
 
 // Linear gradient background for the app
 const Index = () => {
@@ -15,6 +15,7 @@ const Index = () => {
       <ProfileCard />
       <ExperienceSection />
       <SkillsSection />
+      <PersonalProjectsSection />
       <EducationSection />
       <footer className="text-xs text-gray-400 mt-4 mb-1">Powered by Lovable • © {new Date().getFullYear()}</footer>
     </div>
