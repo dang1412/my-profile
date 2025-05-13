@@ -1,12 +1,22 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
+import ProfileCard from "../components/ProfileCard";
+import ExperienceSection from "../components/ExperienceSection";
+import SkillsSection from "../components/SkillsSection";
+import EducationSection from "../components/EducationSection";
+
+// Linear gradient background for the app
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen w-full flex flex-col justify-center items-center font-inter"
+      style={{
+        background: "linear-gradient(102.3deg, rgba(147,39,143,0.10) 5.9%, rgba(234,172,232,0.13) 64%, rgba(246,219,245,0.12) 89%)"
+      }}
+    >
+      <ProfileCard />
+      <ExperienceSection />
+      <SkillsSection />
+      <EducationSection />
+      <footer className="text-xs text-gray-400 mt-4 mb-1">Powered by Lovable • © {new Date().getFullYear()}</footer>
     </div>
   );
 };
