@@ -8,14 +8,18 @@ const ProfileCard = () => (
   <section className="relative bg-white/80 shadow-xl rounded-2xl px-6 py-8 mb-8 font-inter max-w-3xl mx-auto animate-fade-in">
     <div className="flex flex-col items-center gap-4">
       <img src={avatarUrl} alt="Avatar" className="w-28 h-28 rounded-full object-cover border-4 border-primary shadow-lg" />
-      <h1 className="text-3xl font-bold mt-2">Your Name</h1>
-      <h2 className="text-lg font-semibold text-primary">Your Professional Title</h2>
+      <h1 className="text-3xl font-bold mt-2">Dang Thanh Tung</h1>
+      <h2 className="text-lg font-semibold text-primary">AI/Web3 Developer</h2>
       <div className="flex items-center gap-2 mt-1 text-sm text-gray-500">
         <MapPin size={16} className="text-primary" />
-        <span>City, Country</span>
+        <span>Hanoi, Vietnam</span>
       </div>
       <p className="text-md text-gray-700 mt-3 max-w-xl text-center">
-        A short bio introducing yourself, your skills, passions, or what you’re looking for. Make your impact in two lines!
+        {/* A short bio introducing yourself, your skills, passions, or what you’re looking for. Make your impact in two lines! */}
+        9+ years experience as a developer, **creative** problems solver with **well structure** and **high performance** focusing mindset.
+
+        Possess fundamental knowledge about AI/Blockchain, proven track records in *Algorithm, React, D3.js, Typescript, Go, Python, Solidity, Rust*, and more.
+
       </p>
       <div className="flex gap-4 mt-2">
         <a href="mailto:hello@example.com" className="hover-scale p-2 rounded-full bg-gray-100 hover:bg-primary/10 transition" title="Email">
