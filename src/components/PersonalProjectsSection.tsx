@@ -1,6 +1,7 @@
 
 import { ExternalLink } from "lucide-react"
 import Markdown from 'react-markdown'
+import Labels from "./Labels";
 
 const projects = [
   {
@@ -84,7 +85,7 @@ A FRAME-based Substrate node with the Ethereum RPC support.
     short: "Real-time crypto prices from multiple exchanges.",
     techs: ["D3.js", "Tradingview", "Orderbook"],
     description: `
-Prices, orderbooks are feeded from self created [ccex-api](https://github.com/dang1412/ccex-api)
+Prices, orderbooks are feeded from self created [ccex-api](https://github.com/dang1412/ccex-api).
     `,
     url: "https://exchange-compare.web.app/"
   },
@@ -116,13 +117,7 @@ const PersonalProjectsSection = () => (
                   {project.description}
                 </Markdown>
               </div>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {project.techs && project.techs.map((tech, i) => (
-                  <span key={i} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium shadow-sm">
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              <Labels labels={project.techs} />
             </div>
             <a
               href={project.url}

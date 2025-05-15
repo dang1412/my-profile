@@ -1,8 +1,11 @@
 
 import { useState } from "react";
 import { BriefcaseBusiness, ChevronDown, ChevronUp } from "lucide-react";
+import Markdown from "react-markdown";
+
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "./ui/collapsible";
 import { Button } from "./ui/button";
+import Labels from "./Labels";
 
 // Update structure: experiences -> projects under each company
 const experiences = [
@@ -11,11 +14,12 @@ const experiences = [
     company: "Freelance",
     location: "Tokyo/remote",
     period: "2024/6 – Present",
-    description: "Lead development on core products, mentoring junior engineers and ensuring code quality across the team.",
+    description: "Responsible for Web3 frontend application, bridge, indexer and subgraph development.",
     projects: [
       {
         name: "Staking site",
         short: "Maintained staking site for a layer1 project, with multiple validators.",
+        techs: ["Next.js", "Viem", "Wagmi", "GraphQL", "Prisma", "Typescript"],
         details:
           // "Designed and implemented major architectural updates, such as migration to a microservices infrastructure, CI/CD pipeline automation, and advanced monitoring tools integration. Coordinated with backend, frontend, and DevOps teams.",
           `
@@ -25,28 +29,47 @@ After receiving a large and poorly structured project, I migrated it from Ethers
       {
         name: "Indexer for staking app",
         short: "Maintained a subgraph for the staking app with users's staked, unstaked and rewards data.",
+        techs: ["GraphQL", "Subgraph", "Typescript"],
         details:
           // "Worked closely with designers and product managers to create accessible onboarding UIs, led user testing sessions, and improved reporting metrics. Oversaw QA and feedback cycles.",
           `
-I had to upgrade the subgraph due to a hard fork, which modified the output of some contract functions and events. The challenge was that we needed to reindex from the beginning, and the indexer's handler function had to conditionally process both versions of the event output — before and after the upgrade point — based on the block number. Otherwise, it throws because of decoding failure at a certain point.
+I had to upgrade the subgraph due to a hard fork, which modified the output of some contract functions and events.
+The challenge was that we needed to reindex from the beginning, and the indexer's handler function had to conditionally
+process both versions of the event output — before and after the upgrade point — based on the block number.
+Otherwise, it throws because of decoding failure at a certain point.
           `
       },
       {
         name: "Indexer for bridge statistics",
         short: "Developed a subgraph and frontend app for daily tracking the amount of bridged native token.",
+        techs: ["GraphQL", "Subgraph", "Chart", "Typescript"],
         details:
           // "Worked closely with designers and product managers to create accessible onboarding UIs, led user testing sessions, and improved reporting metrics. Oversaw QA and feedback cycles.",
           `
-Daily tracking the amount of tokens flowing in and out across L1 and multiple Layer 2 bridges. The app has charts and time frame filters, is built into a feature of Blockscout Explorer, and is used by the community to track the bridge's performance.
+Daily tracking the amount of tokens flowing in and out across L1 and multiple Layer 2 bridges.
+The app has charts and time frame filters, is built into a feature of Blockscout Explorer,
+and is used by the community to track the bridge's performance.
 `
       },
       {
-        name: "Optimism stack **L1<->L2 bridge**",
+        name: "Optimism stack L1<->L2 bridge",
         short: "Developed a frontend bridge between L1 and L2 Optimism stack.",
+        techs: ["Next.js", "Tailwindcss", "Viem", "EVM"],
         details:
           `
-Viem provides methods to initiate deposits and withdrawals on one layer, as well as observe the corresponding bridge operations performed on the other layer. However, this cannot be applied to our multiple modified Layer 2 versions. After carefully reviewing the contracts and various types of bridge-related events, I finally decided to call the function directly from the appropriate contract. The call itself was straightforward, but it only initiated the bridge operation on one layer. To observe the corresponding operation on the other layer, I manually calculated the **msgHash** based on the initial transaction, and then implemented a listener for the **RelayedMessage** event on the other layer. This approach works for both deposits and withdrawals and both Layer 2 versions.
-However, polling for events can be resource-intensive and may occasionally miss messages, it can be more efficient to check for a known transaction directly using its hash — similar to how the Viem method works. I plan to investigate this approach further when I have more time.
+Viem provides methods to initiate deposits and withdrawals on one layer, as well as observe the corresponding bridge operations performed on the other layer.
+However, this cannot be applied to our multiple modified Layer 2 versions.
+After carefully reviewing the contracts and various types of bridge-related events,
+I finally decided to call the function directly from the appropriate contract.
+The call itself was straightforward, but it only initiated the bridge operation on one layer.
+To observe the corresponding operation on the other layer,
+I manually calculated the **msgHash** based on the initial transaction,
+and then implemented a listener for the **RelayedMessage** event on the other layer.
+This approach works for both deposits and withdrawals and both Layer 2 versions.
+
+**However**, polling for events can be resource-intensive and may occasionally miss messages,
+it could be more efficient to check for a known transaction directly using its hash —
+similar to how the Viem's method works. I plan to investigate this approach further when I have more time.
 `
       },
     ],
@@ -61,19 +84,28 @@ However, polling for events can be resource-intensive and may occasionally miss 
       {
         name: "Managing multiple Database cluster",
         short: "Managed and optimized 3 nodes high availability Postgres database systems including schema backup, live migration with less or no downtime, tuning query, automating building cluster and daily tasks.",
+        techs: ["Postgres", "Ansible", "pgBackRest", "Airflow", "Python", "Grafana"],
         details:
           // "Implemented data visualization using Recharts, built custom reporting tables, and introduced performance optimizations resulting in faster load times. Collaborated on responsive design and accessibility improvements.",
           `
-Automating daily tasks with Airflow, Cronjob, and Python scripts, monitoring and alerting with Grafana, Google Chat.
-I also implemented a custom backup solution using pgBackRest, which allowed us to perform incremental backups and restore to any point in time. This solution reduced our backup window from hours to minutes and improved our recovery time objective (RTO) significantly.
-I improved the processes of archiving data and checking consistency with md5 hash, which increased performance and reduced time and resources cost significantly.
-I implemented an Unit test environment for the database, which allowed us to test/debug/reproduce far more efficient in a minimal, isolated environment.
-I implemented automation for building Postgres database cluster from scratch using Ansible, which allowed us to deploy new database clusters with consistent structure in minutes instead of hours.
+- Automating daily tasks with Airflow, Cronjob, and Python scripts, monitoring and alerting with Grafana, Google Chat.
+
+- I also implemented a custom backup solution using pgBackRest, which allowed us to perform incremental backups and restore to any point in time.
+This solution reduced our backup window from hours to minutes and improved our recovery time objective (RTO) significantly.
+
+- I improved the processes of archiving data and checking consistency with md5 hash,
+which increased performance and reduced time and resources cost significantly.
+
+- I implemented an Unit test environment for the database,
+which allowed us to test/debug/reproduce far more efficient in a minimal, isolated environment.
+
+- I implemented automation for building Postgres database cluster from scratch using Ansible, which allowed us to deploy new database clusters with consistent structure in minutes instead of hours.
           `
       },
       {
         name: "Real-time data synchronization",
         short: "Implemented a real-time data synchronization from MongoDB to ElasticSearch using Kafka.",
+        techs: ["Kafka", "MongoDB", "ElasticSearch", "Debezium", "Java"],
         details:
           "I debugged and modified the Kafka open source connector, which was not well documented and had some bugs at that time. I also implemented a custom solution to handle the data transformation and mapping in case of insert, delete, update, nested-update between MongoDB and ElasticSearch, which was not supported by the connector out of the box.",
       },
@@ -89,6 +121,7 @@ I implemented automation for building Postgres database cluster from scratch usi
       {
         name: "Trading application",
         short: "Building frontend for crypto trading application including responsive UI, state management, realtime price chart, static build for SEO.",
+        techs: ["Angular", "Redux", "Typescript", "TradingView", "D3.js", "Storybook"],
         details:
           // "Implemented data visualization using Recharts, built custom reporting tables, and introduced performance optimizations resulting in faster load times. Collaborated on responsive design and accessibility improvements.",
           `
@@ -100,6 +133,7 @@ I suggested and implemented moving static history data from database to storage,
       {
         name: "Matching engine",
         short: "Implemented data structure for matching engine, which is able to handle a large amount of orders with intensive update frequency.", 
+        techs: ["Btree", "Typescript", "Jest"],
         details:
           // "Implemented data visualization using Recharts, built custom reporting tables, and introduced performance optimizations resulting in faster load times. Collaborated on responsive design and accessibility improvements.",
           `
@@ -114,14 +148,16 @@ I proposed and implemented self-balanced tree (**Btree**) in typescript for the 
     location: "Tokyo, Japan",
     period: "2015",
     description: "Worked in a team with members across Japan and America to develop a nodejs meteor app.",
+    techs: ["Node.js", "Meteor"],
     projects: [],
   },
   {
     jobTitle: "Bridge Engineer",
     company: "FPT Software",
-    location: "Tokyo, Japan",
+    location: "Hanoi, Vietnam / Tokyo, Japan",
     period: "2012-2015",
     description: "Communicated and translated Japanese customer's requirements to the Vietnamese offshore team.",
+    techs: ["BridgeSE", "Java", "Javascript"],
     projects: [],
   },
 ];
@@ -159,6 +195,14 @@ const ExperienceSection = () => {
                 {exp.company} — {exp.location}
               </span>
               <p className="text-gray-600 mt-2 mb-3">{exp.description}</p>
+              {/* <div className="flex flex-wrap gap-2 mt-2">
+                {exp.techs && exp.techs.map((tech, i) => (
+                  <span key={i} className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium shadow-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div> */}
+              <Labels labels={exp.techs} />
               {/* List projects */}
               <div className="space-y-4">
                 {exp.projects.map((proj, projectIdx) => {
@@ -170,6 +214,7 @@ const ExperienceSection = () => {
                           <div>
                             <div className="font-medium text-primary">{proj.name}</div>
                             <div className="text-sm text-gray-700 mt-0.5">{proj.short}</div>
+                            <Labels labels={proj.techs} />
                           </div>
                           <CollapsibleTrigger asChild>
                             <Button
@@ -194,8 +239,9 @@ const ExperienceSection = () => {
                           </CollapsibleTrigger>
                         </div>
                         <CollapsibleContent>
-                          <div className="mt-3 pl-1 text-sm text-gray-600 border-l-2 border-primary/20">
-                            {proj.details}
+                          <hr className="mt-2"/>
+                          <div className="mt-3 text-sm text-gray-600 border-primary/20">
+                            <Markdown>{proj.details}</Markdown>
                           </div>
                         </CollapsibleContent>
                       </div>

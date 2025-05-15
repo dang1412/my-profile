@@ -1,7 +1,8 @@
 
 import { Mail, Linkedin, Github, MapPin } from "lucide-react";
+import Markdown from 'react-markdown'
 
-const avatarUrl = "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=128&q=80";
+const avatarUrl = "https://lh3.googleusercontent.com/a/ACg8ocJfAP5XZcfifLDHZL3tJpa__BJaKOEFGjWK6i_fwFYdPhEcnvtv=s96-c";
 // You can change to your headshot later!
 
 const ProfileCard = () => (
@@ -16,19 +17,19 @@ const ProfileCard = () => (
       </div>
       <p className="text-md text-gray-700 mt-3 max-w-xl text-center">
         {/* A short bio introducing yourself, your skills, passions, or what you’re looking for. Make your impact in two lines! */}
+        <Markdown>
         9+ years experience as a developer, **creative** problems solver with **well structure** and **high performance** focusing mindset.
-
         Possess fundamental knowledge about AI/Blockchain, proven track records in *Algorithm, React, D3.js, Typescript, Go, Python, Solidity, Rust*, and more.
-
+  </Markdown>
       </p>
       <div className="flex gap-4 mt-2">
-        <a href="mailto:hello@example.com" className="hover-scale p-2 rounded-full bg-gray-100 hover:bg-primary/10 transition" title="Email">
+        <a href="mailto:dttung1412@gmail.com" className="hover-scale p-2 rounded-full bg-gray-100 hover:bg-primary/10 transition" title="Email">
           <Mail size={20} />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover-scale p-2 rounded-full bg-gray-100 hover:bg-primary/10 transition" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/dang-thanh-tung-60157035/" target="_blank" rel="noopener noreferrer" className="hover-scale p-2 rounded-full bg-gray-100 hover:bg-primary/10 transition" title="LinkedIn">
           <Linkedin size={20} />
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover-scale p-2 rounded-full bg-gray-100 hover:bg-primary/10 transition" title="GitHub">
+        <a href="https://github.com/dang1412" target="_blank" rel="noopener noreferrer" className="hover-scale p-2 rounded-full bg-gray-100 hover:bg-primary/10 transition" title="GitHub">
           <Github size={20} />
         </a>
       </div>

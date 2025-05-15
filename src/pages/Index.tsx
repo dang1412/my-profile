@@ -15,9 +15,9 @@ const Index = () => {
       <ProfileCard />
       <SkillsSection />
       <ExperienceSection />
-      <PersonalProjectsSection />
       <EducationSection />
-      <footer className="text-xs text-gray-400 mt-4 mb-1">Powered by Lovable • © {new Date().getFullYear()}</footer>
+      <PersonalProjectsSection />
+      <footer className="text-xs text-gray-400 mt-4 mb-1">Dang Thanh Tung © {new Date().getFullYear()}</footer>
     </div>
   );
 };

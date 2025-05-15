@@ -4,8 +4,18 @@ import { GraduationCap } from "lucide-react";
 const educationList = [
   {
     degree: "B.Sc. in Computer Science",
-    school: "Prestigious University",
-    period: "2016 – 2020",
+    school: "Keio University SFC",
+    period: "2010 – 2012",
+  },
+  {
+    degree: "Majored in Computer Science",
+    school: "Hanoi University of Science and Technology",
+    period: "2007 – 2010",
+  },
+  {
+    degree: "Majored in IT (Pascal)",
+    school: "Hanoi Amsterdam Magnet High School - 3rd prize in the municipal computer science contest among primary high school students (Pascal programming contest)",
+    period: "2004 – 2007",
   },
 ];
 

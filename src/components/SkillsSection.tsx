@@ -1,5 +1,4 @@
 
-import React from "react";
 import {
   PieChart,
   Pie,
@@ -12,14 +11,17 @@ import { ChartPie } from "lucide-react";
 
 // Skills data with years of experience
 const skills = [
-  { name: "React", years: 4 },
+  { name: "Frontend", years: 7 },
+  { name: "React", years: 5 },
   { name: "TypeScript", years: 3 },
   { name: "Tailwind CSS", years: 2 },
   { name: "Node.js", years: 3 },
-  { name: "UI/UX", years: 2 },
-  { name: "Figma", years: 2 },
-  { name: "Testing Library", years: 1 },
-  { name: "APIs", years: 3 },
+  { name: "D3.js", years: 3 },
+  { name: "Angular", years: 2 },
+  { name: "Python", years: 2 },
+  { name: "Rust", years: 1 },
+  { name: "Go", years: 1 },
+  { name: "Php", years: 1 },
 ];
 
 // Color palette for the pie chart slices
@@ -54,16 +56,16 @@ const SkillsSection = () => (
       ))}
     </div>
     <div className="w-full md:max-w-lg mx-auto">
-      <ResponsiveContainer width="100%" height={240}>
+      <ResponsiveContainer width="100%" height={320}>
         <PieChart>
           <Pie
             data={skills}
             dataKey="years"
             nameKey="name"
             cx="50%"
-            cy="50%"
-            outerRadius={80}
-            innerRadius={40}
+            cy="45%"
+            outerRadius={90}
+            innerRadius={60}
             fill="#8884d8"
             label={({ name, percent }) =>
               `${name} (${(percent * 100).toFixed(0)}%)`
